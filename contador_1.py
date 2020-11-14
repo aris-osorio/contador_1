@@ -1,6 +1,16 @@
 import re
 from unidecode import unidecode
 
+def contar_palabras(lista):
+    diccionario = {}
+    for palabra in lista:
+        if palabra in diccionario:
+            diccionario[palabra] = diccionario.get(palabra) + 1
+        else:
+            diccionario[palabra] = 1
+    return diccionario
+
+
 def crear_lista(cadena):
     cadena = cadena.replace("\n" , " ")
     cadena = re.sub(r"[^A-Za-z0-9áéíóúüñÁÉÍÓÚÜÑ]+", " ", cadena)
@@ -20,7 +30,8 @@ def obtener_cadena():
 def main():
     cadena = obtener_cadena()
     lista = crear_lista(cadena)
-    print(lista)
+    diccionario = contar_palabras(lista)
+    print(diccionario)
 
 
 if __name__ == "__main__":
